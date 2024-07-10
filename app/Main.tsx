@@ -1,8 +1,10 @@
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import { formatDate } from 'pliny/utils/formatDate'
+import { CalendarDays } from 'lucide-react'
+import Image from 'next/image'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
+import { formatDate } from 'pliny/utils/formatDate'
 
 const MAX_DISPLAY = 5
 
@@ -26,15 +28,25 @@ export default function Home({ posts }) {
               <li key={slug} className="py-12">
                 <article>
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                    <dl>
-                      <dt className="sr-only">Published on</dt>
-                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                    <dl className="relative h-full">
+                      <Image
+                        src={'/post_image.webp'}
+                        alt="post-image"
+                        fill
+                        className="object-none object-center px-3"
+                      />
+                      {/* <dt className="sr-only">Published on</dt> */}
+                      {/* <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                         <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
-                      </dd>
+                      </dd> */}
                     </dl>
                     <div className="space-y-5 xl:col-span-3">
                       <div className="space-y-6">
                         <div>
+                          <div className="flex items-center gap-1 text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                            <CalendarDays className="inline " size={20} />
+                            <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                          </div>
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
                             <Link
                               href={`/blog/${slug}`}
